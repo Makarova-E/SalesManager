@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class SalesManager {
     protected long[] sales;
 
@@ -17,9 +19,14 @@ public class SalesManager {
 
     public long averageSales() {
         long sumSales = 0;
-        for (int i = 1; i < sales.length-1; i++) {
-            sumSales += sales[i];
+        long count = 0;
+        Arrays.sort(sales);
+        for (int i = 1; i < sales.length - 1; i++) {
+            if (sales[i] != sales[0] || sales[i] != sales[sales.length - 1]) {
+                sumSales += sales[i];
+                count++;
+            }
         }
-        return (sumSales / (sales.length -2));
+        return (sumSales / (count));
     }
 }
